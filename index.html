@@ -40,28 +40,6 @@
         <footer>
             <p>This website is written by chatGPT and adjusted by Maurice Stolk on the 13/14th of Januari 2023.</p>
         </footer>
-        <script>
-            const team = [
-                {
-                    name: "Isaiah", 
-                    timezone: "America/Los_Angeles"
-                },
-                {
-                    name: "Mo", 
-                    timezone: "Europe/Amsterdam"
-                }
-            ];  
-            const displayClocks = () => {
-                const clockContainer = document.getElementById("clock-container");
-                let clocks = "";
-                team.forEach(member => {
-                    const time = moment().tz(member.timezone).format("hh:mm A");
-                    clocks += `<div class='clock'>${member.name}<br>${time}</div>`;
-                });
-                clockContainer.innerHTML = clocks;
-            };  
-            setInterval(displayClocks, 1000);
-            displayClocks();
-        </script>
+        <script src="main.js"></script>
     </body>
 </html>
