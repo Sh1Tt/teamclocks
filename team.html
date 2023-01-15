@@ -1,58 +1,309 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Team Management</title>
-  <style>
-    body {
-      background-color: black;
-      color: white;
-    }
-  </style>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+        }
+        header {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        main {
+            padding: .75em;
+            margin: 0 auto;
+            width: max-content
+        }
+        footer {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        form {
+            width: 100%;
+            padding: .375em
+        }
+        .field {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+        #title-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            margin: .75em auto;
+        }
+        #title-container h4 {
+            margin-right: 10px;
+        }
+        #title-container button {
+            padding: 10px;
+            border: 1px solid #ffffff;
+            border-radius: 5px;
+            background-color: #ffffff;
+            color: #000000;
+            cursor: pointer;
+        }
+        #background-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            margin: .75em auto;
+        }
+        #team-container {
+            display: flex;
+            justify-content: center;
+        }
+        #team {
+            list-style: none;
+            padding: 0;
+            width: 100%;
+        }
+        #team li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ffffff;
+        }
+        #team li span {
+            display: inline-block;
+            width: 50%;
+        }
+        #team li span:first-child {
+            text-align: left;
+        }
+        #team li span:last-child {
+            text-align: right;
+        }
+        #add-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        #add-form input {
+            padding: 10px;
+            border: 1px solid #ffffff;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        #add-form select {
+            padding: 10px;
+            border: 1px solid #ffffff;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        #add-form button {
+            padding: 10px;
+            border: 1px solid #ffffff;
+            border-radius: 5px;
+            background-color: #ffffff;
+            color: #000000;
+            cursor: pointer;
+        }
+        input,
+        button {
+            padding: 10px;
+            border: 1px solid #ffffff;
+            border-radius: 5px;
+        }
+        input[type="text"] {
+            width: 100%;
+            margin-right: .75em;
+        }
+        input[type="color"],
+        input[type="range"] {
+            margin: 0;
+            padding: 0;
+        }
+        :visited {
+            color: lightblue;
+        }
+    </style>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.31/moment-timezone-with-data.min.js"></script>
+    <title>Settings</title>
 </head>
 <body>
-  <h1>Team Management</h1>
-  <form id="add-form">
-    <label for="name">Name:</label>
-    <input type="text" id="name" placeholder="Enter name">
-    <br>
-    <label for="timezone">Time Zone:</label>
-    <input type="text" id="timezone" placeholder="Enter time zone">
-    <br>
-    <button type="submit">Add</button>
-  </form>
-  <script>
-    // Get form element
-    const form = document.getElementById("add-form");
+    <header>
+        <h1>Settings</h1>
+    </header>
+    <aside>
+        <a href="index.html">Back</a>
+    </aside>
+    <main>
+        <form id="title-container">
+                <h4>
+                Title
+            </h4>
+            <div>
+                <label for="title">Text:</label>
+                <input type="text" id="title" name="title" placeholder="Team clocks" onchange="updateTitle()">
+            </div>
+            <br>
+            <label>Gradient settings</label>
+            <div class="field">
+                <label for="gradient-rotation">Rotation:</label>
+                <span id="rotation-value"></span>
+            </div>
+            <input type="range" id="gradient-rotation" name="gradient-rotation" min="0" max="360" value="0" oninput="updateGradient()">
+            <div class="field">
+                <label for="start-color">Start Color:</label>
+                <input type="color" id="start-color" name="start-color" onchange="updateGradient()">
+            </div>
+            <div class="field">
+                <label for="end-color">End Color:</label>
+                <input type="color" id="end-color" name="end-color" onchange="updateGradient()">
+            </div>
+        </form>
+        <form id="background-container">
+            <h4>
+                Background image
+            </h4>
+            <div class="field">
+                <input type="text" id="background-image" name="background-image" placeholder="https://example.com/image.jpg">
+                <button type="submit" onclick="updateBackground()">Save</button>
+            </div>
+            <button type="submit" onclick="resetBackground()">Reset</button>
+        </form>
+        <form id="team-container">
+            <div id="team"></div>
+        </form>
+        <form id="add-form">
+            <input type="text" id="name" placeholder="Enter name">
+            <select id="timezone"></select>
+            <button type="submit">Add</button>
+        </form>
+        
+    </main>
+    <footer></footer>
+    <script>
+        const updateTitle = () => {
+            const input = document.getElementById("title").value;
+            document.title = input;
+            localStorage.setItem("title", input);
+        };
 
-    // Handle form submission
-    form.addEventListener("submit", e => {
-      e.preventDefault();
+        // Get form element
+        const form = document.getElementById("add-form");
+        const timezone = document.getElementById("timezone");
 
-      // Get name and time zone inputs
-      const name = document.getElementById("name").value;
-      const timezone = document.getElementById("timezone").value;
+        // Handle form submission
+        form.addEventListener("submit", e => {
+        e.preventDefault();
 
-      // Check for empty inputs
-      if (!name || !timezone) {
-        alert("Please enter a name and time zone");
-        return;
-      }
+        // Get name and time zone inputs
+        const name = document.getElementById("name").value;
+        const timezone = document.getElementById("timezone").value;
 
-      // Get existing team from local storage
-      let team = JSON.parse(localStorage.getItem("team")) || [];
+        // Check for empty inputs
+        if (!name || !timezone) {
+            alert("Please enter a name and time zone");
+            return;
+        }
 
-      // Add new team member
-      team.push({ name, timezone });
+        // Get existing team from local storage
+        let team = JSON.parse(localStorage.getItem("team")) || [];
 
-      // Save updated team to local storage
-      localStorage.setItem("team", JSON.stringify(team));
+        // Add new team member
+        team.push({ name, timezone });
 
-      // Clear form inputs
-      form.reset();
+        // Save updated team to local storage
+        localStorage.setItem("team", JSON.stringify(team));
 
-      // Display success message
-      alert("Team member added successfully");
-    });
-  </script>
+        // Clear form inputs
+        form.reset();
+
+        location.reload();
+        });
+
+        const teamContainer = document.getElementById("team-container");
+        const team = document.getElementById("team");
+
+        // Get team from local storage
+        let teamMembers = JSON.parse(localStorage.getItem("team")) || [];
+
+        // Display team members
+        teamMembers.forEach((member, index) => {
+            const li = document.createElement("li");
+            li.innerHTML = `
+                <span>${member.name}</span>
+                <span>${member.timezone}</span>
+                <button type="button" onclick="removeTeamMember(${index})">Remove</button>
+            `;
+            team.appendChild(li);
+        });
+
+        const removeTeamMember = index => {
+            if (!confirm("Are you sure you want to remove this team member?")) {
+                return;
+            };
+
+            if (teamMembers.length === 1) {
+                localStorage.removeItem("team");
+                location.reload();
+                return;
+            };
+
+            // Get team from local storage
+            let team = JSON.parse(localStorage.getItem("team")) || [];
+
+            // remove team member
+            team.splice(index, 1);
+
+            // Save updated team to local storage
+            localStorage.setItem("team", JSON.stringify(team));
+
+            location.reload();
+        }
+    
+        const names = moment.tz.names();
+        names.forEach(name => {
+            const option = document.createElement("option");
+            option.value = name;
+            option.text = name;
+            timezone.appendChild(option); 
+        });
+
+
+        const updateGradient = () => {
+            const rotation = document.getElementById("gradient-rotation").value;
+            const startColor = document.getElementById("start-color").value;
+            const endColor = document.getElementById("end-color").value;
+            document.getElementById("rotation-value").innerHTML = rotation + "deg";
+            const gradient = "linear-gradient(" + rotation + "deg, " + startColor + ", " + endColor + ")";
+            localStorage.setItem("gradient", gradient);
+        }
+
+        const updateBackground = () => {
+            const background = document.getElementById("background-image").value;
+            if (background === ""
+              || background === " "
+              || typeof background === "undefined"
+            )
+            {
+                alert("Please enter a valid link");
+                return;
+            }
+            else {
+                document.body.style.backgroundImage = "url(" + background + ")";
+
+            }
+            localStorage.setItem("background", background);
+        }
+        const resetBackground = () => {
+            localStorage.removeItem("background");
+        }
+    </script>
 </body>
 </html>
