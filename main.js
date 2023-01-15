@@ -36,7 +36,7 @@ const Clocks = {
 
 const Background = {
     display: () => {
-        const background = localStorage.getItem("background") || "i/gb-bg-0.png";
+        const background = localStorage.getItem("background") || "gb-bg-0.png";
         document.body.style.backgroundImage = `url(${background})`;
     }
 };
