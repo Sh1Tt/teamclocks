@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Team Management</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>Team Management</h1>
+  <form id="add-form">
+    <label for="name">Name:</label>
+    <input type="text" id="name" placeholder="Enter name">
+    <br>
+    <label for="timezone">Time Zone:</label>
+    <input type="text" id="timezone" placeholder="Enter time zone">
+    <br>
+    <button type="submit">Add</button>
+  </form>
+  <script>
+    // Get form element
+    const form = document.getElementById("add-form");
+
+    // Handle form submission
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+
+      // Get name and time zone inputs
+      const name = document.getElementById("name").value;
+      const timezone = document.getElementById("timezone").value;
+
+      // Check for empty inputs
+      if (!name || !timezone) {
+        alert("Please enter a name and time zone");
+        return;
+      }
+
+      // Get existing team from local storage
+      let team = JSON.parse(localStorage.getItem("team")) || [];
+
+      // Add new team member
+      team.push({ name, timezone });
+
+      // Save updated team to local storage
+      localStorage.setItem("team", JSON.stringify(team));
+
+      // Clear form inputs
+      form.reset();
+
+      // Display success message
+      alert("Team member added successfully");
+    });
+  </script>
+</body>
+</html>
