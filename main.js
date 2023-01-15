@@ -1,4 +1,4 @@
-const team = [
+const getTeam = () => JSON.parse(localStorage.getItem("team")) || [
     {
         name: "Isaiah", 
         timezone: "America/Los_Angeles"
@@ -7,7 +7,10 @@ const team = [
         name: "Mo", 
         timezone: "Europe/Amsterdam"
     }
-];  
+];
+const storeTeam = () => {
+    localStorage.setItem("team", JSON.stringify(team));
+};
 const displayClocks = () => {
     const clockContainer = document.getElementById("clock-container");
     let clocks = "";
@@ -16,6 +19,8 @@ const displayClocks = () => {
         clocks += `<div class='clock'>${member.name}<br>${time}</div>`;
     });
     clockContainer.innerHTML = clocks;
-};  
+};
+const team = getTeam();
+storeTeam();
 setInterval(displayClocks, 1000);
 displayClocks();
