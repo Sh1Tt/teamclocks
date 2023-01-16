@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Scrolling Images</title>
+    <style>
+        body {
+            height: calc((100vh) * 10);
+        }
+        /* Style for the images */
+        .slide {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: transform 1s ease;
+        }
+
+        /* Style for the background colors */
+        .bg1 {
+            background-color: #F44336;
+            /* Red */
+        }
+
+        .bg2 {
+            background-color: #4CAF50;
+            /* Green */
+        }
+
+        .bg3 {
+            background-color: #3F51B5;
+            /* Blue */
+        }
+
+        .bg4 {
+            background-color: #FFEB3B;
+            /* Yellow */
+        }
+
+        .bg5 {
+            background-color: #FF9800;
+            /* Orange */
+        }
+
+        .bg6 {
+            background-color: #9C27B0;
+            /* Purple */
+        }
+
+        .bg7 {
+            background-color: #2196F3;
+            /* Light Blue */
+        }
+
+        .bg8 {
+            background-color: #009688;
+            /* Teal */
+        }
+
+        .bg9 {
+            background-color: #795548;
+            /* Brown */
+        }
+
+        .bg10 {
+            background-color: #607D8B;
+            /* Blue Grey */
+        }
+
+
+
+        /* Style for the text on the images */
+        h2 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 3em;
+            text-align: center;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="slide bg1">
+        <h2>Slide 1</h2>
+    </div>
+    <div class="slide bg2">
+        <h2>Slide 2</h2>
+    </div>
+    <div class="slide bg3">
+        <h2>Slide 3</h2>
+    </div>
+    <div class="slide bg4">
+        <h2>Slide 4</h2>
+    </div>
+    <div class="slide bg5">
+        <h2>Slide 5</h2>
+    </div>
+    <div class="slide bg6">
+        <h2>Slide 6</h2>
+    </div>
+    <div class="slide bg7">
+        <h2>Slide 7</h2>
+    </div>
+    <div class="slide bg8">
+        <h2>Slide 8</h2>
+    </div>
+    <div class="slide bg9">
+        <h2>Slide 9</h2>
+    </div>
+    <div class="slide bg10">
+        <h2>Slide 10</h2>
+    </div>
+    <script>
+        // Get the slides
+        var slides = document.getElementsByClassName("slide");
+        console.log(slides);
+
+        // Keep track of the current slide
+        var currentSlide = 0;
+
+        // Show the first slide
+        slides[currentSlide].style.transform = "translateX(0%)";
+
+        // Listen for scroll events
+        window.addEventListener("scroll", function () {
+            // Get the current scroll position
+            var scrollPos = window.pageYOffset;
+
+            // Calculate the number of slides that have been scrolled past
+            var slideNum = Math.floor(scrollPos / window.innerHeight);
+
+            // Make sure the slide number is within bounds
+            if (slideNum >= 0 && slideNum < slides.length) {
+                // Hide the current slide
+                slides[currentSlide].style.transform = "translateX(-100%)";
+
+                // Show the new slide
+                currentSlide = slideNum;
+                slides[currentSlide].style.transform = "translateX(0%)";
+            }
+        });
+    </script>
+</body>
+
+</html>
