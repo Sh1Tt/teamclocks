@@ -34,8 +34,8 @@
     </style>
     <style>
         :root {
-            --theme-bg: rgba(17,23,33,1);
-            --card-bg: rgba(19,26,40,1);
+            --theme-bg: rgba(7,21,35,1);
+            --card-bg: rgba(9,23,42,1);
         }
         body {
             height: calc((100vh) * 5.5);
@@ -83,10 +83,17 @@
             background-color: #3F51B5;
             /* Blue */
             z-index: 8;
-
+            background-color: var(--theme-bg);
+        }
+        
+        .bg3 span.artwork {
             background: url(slide-1.png);
-            background-size: cover;
+            background-size: contain;
+            background-repeat: no-repeat;
             background-position: right;
+            width: 80vw;
+            aspect-ratio: 1;
+            
         }
 
         .bg4 {
@@ -171,6 +178,25 @@
             max-width: 1220px;
 
         }
+        
+        div.banner {
+            width: 100%;
+            height: min-content;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+            background-color: #b3a20f;
+            color: rgb(255, 255, 255);
+
+        }
+
+        div.banner h4 {
+            font-weight: 100;
+            margin: 0;
+            padding: .75em 0;
+        }
+
         div.page.main {
             flex: 1;
         }
@@ -191,6 +217,7 @@
             text-align: center;
         }
 
+        
         div.page.main section div.hero {
             position: relative;
             display: flex;
@@ -290,6 +317,11 @@
                         Win a Ghost Buddy NFT! Up to 3 winners!
                     </p>
                 </span>
+            </div>
+            <div class="banner">
+                <h4>
+                    Win your own Ghost Buddy NFT while you get exposure as an artist! Contest ends on 31st of Januari 2023!
+                </h4>
             </div>
             <div class="page main">
                 <section>
@@ -431,7 +463,14 @@
         </div>
     </div>
     <div class="slide bg3">
-        <h2>Slide 3</h2>
+        <div class="page content">
+            <span class="artwork">
+                
+            </span>
+            <span>
+                Artist: <a href="https://twitter.com/ghostbuddyNFT" target="_blank">Ghost Buddy</a>
+            </span>
+        </div>
     </div>
     <div class="slide bg4">
         <h2>Slide 4</h2>
