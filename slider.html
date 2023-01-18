@@ -36,7 +36,7 @@
         :root {
             --theme-bg: rgba(7,21,35,1);
             --theme-text: rgba(238,243,253,1);
-            --card-bg: rgba(9,23,42,1);
+            --card-bg: rgba(11,26,42,1);
             --theme-main: rgba(14,207,133,1);
             --theme-accent: rgba(219,8,202,1);
 
@@ -46,8 +46,8 @@
             height: calc((100vh) * 5.5);
             margin: 0;
             padding: 0;
-            background-color: rgba(17,23,33,1);
-            color: rgba(238,243,253,1);
+            background-color: var(--theme-bg);
+            color: var(--theme-text);
             min-height: 100vh; 
             font-family: 'Signika', sans-serif;
             font-size: large;
@@ -64,39 +64,39 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-size: cover;
-            background-position: top right;
+            background-color: var(--theme-bg);
+        
             transition: 1s ease;
         }
 
         /* Style for the background colors */
         .bg1 {
             z-index: 10;
-            background-color: var(--theme-bg);
         }
 
         .bg2 {
             z-index: 9;
-            background-color: var(--theme-bg);
         }
 
         .bg3 {
             z-index: 8;
-            background-color: var(--theme-bg);
+        }
+
+        .bg4 {
+            z-index: 7;
         }
         
         .bg4 span.artwork {
             background: url(slide-1.png);
+            
+            background-color: var(--theme-bg);
             background-size: contain;
             background-repeat: no-repeat;
             background-position: right;
             width: 80vw;
             height: 85vh;
             min-width: 286px;
-        }
-
-        .bg4 {
-            z-index: 7;
+            margin: 2.5%;
         }
 
         .bg5 {
@@ -319,6 +319,43 @@
 
 
         
+        span.artwork {
+            position: relative;
+        }
+        span.vote {
+            background-color: rgba(0,0,0,0);
+            color: var(--theme-text);
+        }
+
+        div.info {
+            position: absolute;
+            width: 50%;
+            height: max-content;
+            min-height: 5em;
+            background-color: var(--card-bg);
+            padding: 2.5em 5em;
+            top: 92.5%;
+            margin: 0 auto;
+            min-width: 316px;
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            align-items: center;
+            border-radius: .375em;
+            box-shadow: 
+                0px 1px 1px rgba(0,0,0,0.12), 
+                0px 2px 2px rgba(0,0,0,0.12),
+                -1px 4px 4px rgba(0,0,0,0.12),
+                -3px 8px 8px rgba(0,0,0,0.12),
+                -6px 16px 16px rgba(0,0,0,0.12)
+            ;
+        }
+        
+        div.field {
+            display: flex;
+        }
     </style>
 
 </head>
@@ -431,10 +468,8 @@
                     About the Ghost Buddy Roadtrip Contest
                 </h2>
                 <p>
-                    The contest is split into two leagues. 
-                    The Ghost League is for non-holders of Ghost Buddy NFTs. 
-                    The Community League is for holders of Ghost Buddy NFTs.
-                    
+                    Sum more text
+
                 </p>
             </div>
             <div class="page main">
@@ -459,7 +494,7 @@
                                 <h4>The Community League</h4>
                                 <ul>
                                     <li>
-                                        At least 1 Ghost Buddy NFT must be held by the winner
+                                        At least 1 Ghost Buddy NFT must be held to participate in the Community League.
                                     </li>
                                 </ul>
                             </div>
@@ -467,7 +502,7 @@
                                 <h4>The Ghost League</h4>
                                 <ul>
                                     <li>
-                                        The Ghost Buddy that is made available for download must be used in the artwork
+                                        To participate in the Ghost League, you must use the Ghost Buddy that is made available for the Ghost League.
                                     </li>
                                 </ul>
                             </div>
@@ -478,7 +513,7 @@
                                         Everybody gets 1 vote per league.
                                     </li>
                                     <li>
-                                        Community members get another vote that they can use to vote for the community's favorite
+                                        Community members get another vote in order to pick the community's favorite submission for the contest.
                                     </li>
                                 </ul>
                             </div>
@@ -505,11 +540,59 @@
     <div class="slide bg4">
         <div class="page content">
             <span class="artwork">
+            <div class="info">
+                <div class="field">
+                    <span>
+                        Title:
+                    </span>
+                    <span>
+                        Xim Zim Zimmer, who got the keys to my bimmer?
+                    </span>
+                </div>
+                <div class="field">
+                    <span>
+                        Artist:
+                    </span>
+                    <span>
+                        <a href="https://twitter.com/_sh1Tt" target="_blank">
+                            Maurice💫🐘🤌(Sh1Tt)
+                        </a>
+                    </span>
+                </div>
+                <div class="field">
+                    <span>
+                        League:
+                    </span>
+                    <span>
+                        Community
+                    </span>
+                </div>
+                <div class="field">
+                    <span>
+                        Votes:
+                    </span>
+                    <span>
+                        0
+                    </span>
+                    <span class="button vote">
+                        Vote
+                    </span>
+                </div>
+                <div class="field">
+                    
+                        <img
+                            src="data:image/png;base64,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"
+                            width="24"
+                            height="24"
+                            alt=""
+                        >
+                    <span>
+                        0
+                    </span>
+                </div>
+            </span>
                 
-            </span>
-            <span>
-                Artist: <a href="https://twitter.com/ghostbuddyNFT" target="_blank">Ghost Buddy</a>
-            </span>
+            </div>
         </div>
     </div>
     <div class="slide bg5">
@@ -539,7 +622,7 @@
         var currentSlide = 0;
 
         // Show the first slide
-        // slides[currentSlide].style.opacity = 1;
+        slides[currentSlide].style.opacity = 1;
         // slides[currentSlide].style.zIndex = 11;
         slides[currentSlide].style.transform = "translateX(0px)";
 
@@ -554,13 +637,13 @@
             // Make sure the slide number is within bounds
             if (slideNum >= 0 && slideNum < slides.length) {
                 // Hide the current slide
-                // slides[currentSlide].style.opacity = 0;
+                slides[currentSlide].style.opacity = 0.5;
                 // slides[currentSlide].style.zIndex = 1;
                 slides[currentSlide].style.transform = "translateX(-100%)";
                 
                 // Show the new slide
                 currentSlide = slideNum;
-                // slides[currentSlide].style.opacity = 1;
+                slides[currentSlide].style.opacity = 1;
                 // slides[currentSlide].style.zIndex = 11;
                 slides[currentSlide].style.transform = "translateX(0px)";
             }
