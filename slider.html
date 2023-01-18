@@ -186,7 +186,7 @@
             flex-direction: row;
             align-items: center;
             justify-content: space-around;
-            background-color: #b3a20f;
+            background-color: rgba(136,113,13,1);
             color: rgb(255, 255, 255);
 
         }
@@ -209,7 +209,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin: 2.5vh 0;
+            margin: 1.25vh 0 3.75vh;
         }
 
         div.page.main section div.intro {
@@ -266,7 +266,15 @@
                 -3px 8px 8px rgba(0,0,0,0.12),
                 -6px 16px 16px rgba(0,0,0,0.12)
             ;
+        }
 
+        
+        div.card h4 {
+            padding: 0;
+            color: rgb(14, 207, 133);
+        }
+        div.card h4 span {
+            color: rgb(219, 8, 202);
         }
 
         div.page.main section div.hero div.league.container span.image.wrapper {
@@ -345,10 +353,10 @@
 
                             <div class="league card" id="card-1">
                                 <h4>
-                                    The Community League *holders only*
+                                    The Community League <span>**holders only**</span>
                                 </h4>
                                 <p>
-                                    1st Prize: Ghost Buddy #????
+                                    Prize: Ghost Buddy #????
                                 </p>
                                 <span class="image wrapper">
                                     <img 
@@ -364,10 +372,10 @@
                         <div class="league container" id="wrapper-1">
                             <div class="league card" id="card-1">
                                 <h4>
-                                    The Ghost League *non-holders only*
+                                    The Ghost League <span>**non-holders**</span>
                                 </h4>
                                 <p>
-                                    1st Prize: Ghost Buddy #2572
+                                    Prize: Ghost Buddy #2572
                                 </p>
                                 <span class="image wrapper">
                                     <img 
@@ -502,9 +510,9 @@
         var currentSlide = 0;
 
         // Show the first slide
-        slides[currentSlide].style.opacity = 1;
-        slides[currentSlide].style.zIndex = 11;
-        // slides[currentSlide].style.transform = "translateY(0px)";
+        // slides[currentSlide].style.opacity = 1;
+        // slides[currentSlide].style.zIndex = 11;
+        slides[currentSlide].style.transform = "translateX(0px)";
 
         // Listen for scroll events
         window.addEventListener("scroll", function () {
@@ -517,15 +525,15 @@
             // Make sure the slide number is within bounds
             if (slideNum >= 0 && slideNum < slides.length) {
                 // Hide the current slide
-                slides[currentSlide].style.opacity = 0;
-                slides[currentSlide].style.zIndex = 1;
-                // slides[currentSlide].style.transform = "translateY(-100px)";
+                // slides[currentSlide].style.opacity = 0;
+                // slides[currentSlide].style.zIndex = 1;
+                slides[currentSlide].style.transform = "translateX(-100%)";
                 
                 // Show the new slide
                 currentSlide = slideNum;
-                slides[currentSlide].style.opacity = 1;
-                slides[currentSlide].style.zIndex = 11;
-                // slides[currentSlide].style.transform = "translateY(0px)";
+                // slides[currentSlide].style.opacity = 1;
+                // slides[currentSlide].style.zIndex = 11;
+                slides[currentSlide].style.transform = "translateX(0px)";
             }
         });
     </script>
