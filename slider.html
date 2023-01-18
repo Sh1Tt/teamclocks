@@ -3,10 +3,55 @@
 
 <head>
     <title>Scrolling Images</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Signika&display=swap" rel="stylesheet">
     <style>
-        body {
-            height: calc((100vh) * 10);
+        /* width & round */
+        ::-webkit-scrollbar,
+        iframe::-webkit-scrollbar {
+            width: 0px;
+            border-radius: 50%;
         }
+    
+        /* Track */
+        ::-webkit-scrollbar-track,
+        iframe::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0);
+        }
+    
+        /* Handle */
+        ::-webkit-scrollbar-thumb,
+        iframe::-webkit-scrollbar-thumb {
+            background: var(0,0,0,0);
+        }
+    
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover,
+        iframe::-webkit-scrollbar-thumb:hover {
+            background: var(0,0,0,0);
+        }
+    </style>
+    <style>
+        :root {
+            --theme-bg: rgba(17,23,33,1);
+            --card-bg: rgba(19,26,40,1);
+        }
+        body {
+            height: calc((100vh) * 5.5);
+            margin: 0;
+            padding: 0;
+            background-color: rgba(17,23,33,1);
+            color: rgba(238,243,253,1);
+            min-height: 100vh; 
+            font-family: 'Signika', sans-serif;
+            font-size: large;
+        }
+
+        h1 {
+            font-family: 'Lobster', cursive;
+        }
+
         /* Style for the images */
         .slide {
             position: fixed;
@@ -15,93 +60,375 @@
             width: 100%;
             height: 100%;
             background-size: cover;
-            background-position: center;
-            transition: transform 1s ease;
+            background-position: top right;
+            transition: 1s ease;
         }
 
         /* Style for the background colors */
         .bg1 {
             background-color: #F44336;
             /* Red */
-            z-index: -1;
+            z-index: 10;
+            background-color: var(--theme-bg);
         }
 
         .bg2 {
             background-color: #4CAF50;
             /* Green */
-            z-index: -2;
+            z-index: 9;
+            background-color: var(--theme-bg);
         }
 
         .bg3 {
             background-color: #3F51B5;
             /* Blue */
-            z-index: -3;
+            z-index: 8;
+
+            background: url(slide-1.png);
+            background-size: cover;
+            background-position: right;
         }
 
         .bg4 {
             background-color: #FFEB3B;
             /* Yellow */
-            z-index: -4;
+            z-index: 7;
         }
 
         .bg5 {
             background-color: #FF9800;
             /* Orange */
-            z-index: -5;
+            z-index: 6;
         }
 
         .bg6 {
             background-color: #9C27B0;
             /* Purple */
-            z-index: -6;
+            z-index: 5;
         }
 
         .bg7 {
             background-color: #2196F3;
             /* Light Blue */
-            z-index: -7;
+            z-index: 4;
         }
 
         .bg8 {
             background-color: #009688;
             /* Teal */
-            z-index: -8;
+            z-index: 3;
         }
 
         .bg9 {
             background-color: #795548;
             /* Brown */
-            z-index: -9;
+            z-index: 2;
         }
 
         .bg10 {
             background-color: #607D8B;
             /* Blue Grey */
-            z-index: -10;
+            z-index: 1;
         }
 
 
 
         /* Style for the text on the images */
-        h2 {
+        .slide > h2 {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            top: 0;
+            left: 0;
+            /* transform: translate(-50%, -50%); */
             color: white;
             font-size: 3em;
             text-align: center;
+            transition: .4 ease-in-out;
         }
+
+        div.page.content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        
+        div.page.header,
+        div.page.main,
+        div.page.footer {
+            position: relative;
+            width: 100%;
+            flex: .5;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            max-width: 1220px;
+
+        }
+        div.page.main {
+            flex: 1;
+        }
+        div.page.footer {
+            justify-content: flex-end;
+        }
+
+        div.page.footer div.cta-1 {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 2.5vh 0;
+        }
+
+        div.page.main section div.intro {
+            margin: 3.75em 7.5em;
+            text-align: center;
+        }
+
+        div.page.main section div.hero {
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: space-around;
+            transform-style: preserve-3d;
+            
+        }
+
+        div.page.main section div.hero div.league.container {
+            perspective: 10px;
+            position: relative;
+            display: flex;
+            flex: 1;
+
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        div.page.main section div.hero div.league.container:nth-child(1) {
+            transform: translate3d(20%, 7.5%, -5px);
+        }
+        div.page.main section div.hero div.league.container:nth-child(2) {
+            transform: translate3d(-20%, -7.5%, 10px);
+        }
+
+        div.page.main section div.hero div.league.container div.card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: max-content;
+            aspect-ratio: 1;
+            background-color: var(--card-bg);
+            border: 1px solid rgba(17,38,56,.75);
+            border-radius: .375em;
+            padding: .375em .75em;
+            box-shadow: 
+                0px 1px 1px rgba(0,0,0,0.12), 
+                0px 2px 2px rgba(0,0,0,0.12),
+                -1px 4px 4px rgba(0,0,0,0.12),
+                -3px 8px 8px rgba(0,0,0,0.12),
+                -6px 16px 16px rgba(0,0,0,0.12)
+            ;
+
+        }
+
+        div.page.main section div.hero div.league.container span.image.wrapper {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 256px;
+            height: 256px;
+            flex: 1;
+
+        }
+
+        div.page.main section div.hero div.league.container span.image.wrapper img.prize {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 256px;
+            height: 256px;
+            flex: 1;
+            margin: 0;
+            padding: 0;
+            border-radius: .75em;
+
+        }
+
+
+
+        
     </style>
 
 </head>
 
 <body>
     <div class="slide bg1">
-        <h2>Slide 1</h2>
+        <!-- <h2>Slide 1</h2> -->
+        <div class="page content">
+            <div class="page header">
+                <h1>
+                    Ghost Buddy Roadtrip Contest
+                </h1>
+                <span class="subheader">
+                    <p>
+                        <!-- Win a Ghost Buddy NFT! -->
+                        Win a Ghost Buddy NFT! Up to 3 winners!
+                    </p>
+                </span>
+            </div>
+            <div class="page main">
+                <section>
+                    <div class="intro">
+<!-- 
+                        <h2>
+                            2 Leagues, 3 Prizes!
+                        </h2> -->
+                        <p>
+                            The Ghost Buddy Roadtrip Contest is a community driven contest where the community decides the winner. 
+                            The contest is split into two leagues, the Community League and the Ghost League. 
+                            The Community League is open to all members of the Ghost Buddy community who hold one or more Buddies. 
+                            The Ghost League is open to everybody who do not has a Ghost Buddy NFT yet. 
+                            The winner of each league will receive a Ghost Buddy NFT.
+                            The 3th Ghost Buddy NFT will be awarded to community's free pick (All submissions will be elidgable for this prize)
+
+                        </p>
+                    </div>
+                    <div class="hero">
+                        <div class="league container" id="wrapper-0">
+
+                            <div class="league card" id="card-1">
+                                <h4>
+                                    The Community League *holders only*
+                                </h4>
+                                <p>
+                                    1st Prize: Ghost Buddy #????
+                                </p>
+                                <span class="image wrapper">
+                                    <img 
+                                        alt="" 
+                                        src="boo/" 
+                                        class="prize">
+                                </span>
+                                <span>
+
+                                </span>
+                            </div>
+                        </div>
+                        <div class="league container" id="wrapper-1">
+                            <div class="league card" id="card-1">
+                                <h4>
+                                    The Ghost League *non-holders only*
+                                </h4>
+                                <p>
+                                    1st Prize: Ghost Buddy #2572
+                                </p>
+                                <span class="image wrapper">
+                                    <img 
+                                        alt="" 
+                                        src="boo/Ghost-Buddy-2572.png" 
+                                        class="prize">
+                                </span>
+                                <span>
+                                    
+                                </span>
+                            </div>
+
+                        </div>
+                        
+                    </div>
+                </section>
+            </div>
+            <div class="page footer">
+                <div class="cta-1">
+                    <h4>
+                        Scroll down
+                    </h4>
+                    <span>
+                        <img 
+                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAADOklEQVR4nO2by2oUQRSGK14wEhWN97jwtohmK3jZqMH3UJREX0CJ+BqCb6BEMUYEN97QxCCoGzfe0Zgs3KlxsjR8UvZpLDrdnc70hVM9/cPATM/pqXO+OnWqu6vGmEblCtgEnAPuAu+BeZI1LzbjwFl7rvFVwFrgCvCL9vUTuAx0G58E7AJeO4E8AIaAfqAn5bwe4AAwDDx0zn8J9BmPgp8Vxz8Ax3P81gngo/zWjHoIBGkf9vyzpDEMTMWk+2SCbS8w4WSC3uFAMObDnk8sYEkDPsXeQvgkZiNGowicDAteatpHA14KgNgMOoVxo9EmgmnrX8HLYLtsAGL3WEzPGG0imOethkoEcEFMx4w2EYx7q/4SARwU03dGm4CWOLeuRADrxfS30SYyBhFnm+dcNaKNIKIqup1KxfKCmIyJf6LodioVFTnWAKgIdNuOVSWjTTQAAtWlHbWONQAqAq3WsQZARaDVOtYAqAi0WscaABWBLtUxoEuWzNxXV9HtaAbwhsV6VXQ7lYqMjgErnKB/yMvqT5Ht+ABgQT6vrAuAVpaHonkAABvEds74+licfABUPxYfF+eGSwQQLozcNoqXxh6VCOCJ2J422kQwl9uFS6uTRQMATjkzh77FUSvZzmL1BdhiCgIQWR6/aLQK6JZNDMimht68AIDNzjrCC2CN0SygT7azIL022C4ASfvP8v03YKfxQQQQwkxA1vXPAwPOXL4IgCx+Dki1Dwte2PN+BB8ZDiNOYYwqCiBOtuBdUp/2abIV2+7oAO4Ab50rxjgALbEZs1Od2mqfR3nvBbwXDQCaDKAZAh1SAwjm9VvAVRto1gwAVgHXgNEsm65UimDn91P+66YElgpAPl93zntuQRoPe35KArCXxXPy/gawOgmAALIZg1xAzTr3Ff5kAnBfHJ8G9gJHHQijCQAWIsEfBvY79xXjxlMAe+TYMQdCHADc4OU7bwH0OOPf3sXtk+OHnMfgcQDsbvMjcnw38LUudWA6JhNmnFWi7yk979f4zwhhG7DdsdsBbK1V8EsNhzhZQF6nfR4ItQ0+C4TaB58GoWOCTymMfl7tFXyfUP+eT8iEe/Jnq87oeaNQfwHeoECrM0O/aAAAAABJRU5ErkJggg==" 
+                            alt="cta-1"
+                        >
+                    </span>
+                </div>  
+            </div>
+        </div>
     </div>
     <div class="slide bg2">
-        <h2>Slide 2</h2>
+        <!-- <h2>Slide 2</h2> -->
+        <div class="page content">
+            <div class="page header">
+                <h2>Contest Rules</h2>
+            </div>
+            <div class="page main">
+                <section>
+                    <div class="intro">
+                        <p>
+                            
+                        </p>
+                    </div>
+                    <div class="rules">
+                        <div>
+                            <div>
+                                <h4>The Community League</h4>
+                                <ul>
+                                    <li>
+                                        At least 1 Ghost Buddy NFT must be held by the winner
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4>The Ghost League</h4>
+                                <ul>
+                                    <li>
+                                        The Ghost Buddy that is made available for download must be used in the artwork
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4>Community votes</h4>
+                                <ul>
+                                    <li>
+                                        Everybody gets 1 vote per league.
+                                    </li>
+                                    <li>
+                                        Community members get another vote that they can use to vote for the community's favorite
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div>
+                            <a href="Ghost-Buddy-2572-Download.png" download="Ghost-Buddy-2752-Ghost-League.png">
+                                <span>Download the Buddy for the Ghost League here</span>
+                                <img 
+                                    src="Ghost-Buddy-2572-Download.png" 
+                                    alt="Ghost Buddy #2572 - Download version available for the Ghost League"
+                                    width="256px"
+                                    height="256px"
+                                >
+                            </a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="page footer">
+  
+            </div>
+        </div>
     </div>
     <div class="slide bg3">
         <h2>Slide 3</h2>
@@ -136,24 +463,30 @@
         var currentSlide = 0;
 
         // Show the first slide
-        slides[currentSlide].style.transform = "translateX(0%)";
+        slides[currentSlide].style.opacity = 1;
+        slides[currentSlide].style.zIndex = 11;
+        // slides[currentSlide].style.transform = "translateY(0px)";
 
         // Listen for scroll events
         window.addEventListener("scroll", function () {
             // Get the current scroll position
-            var scrollPos = window.pageYOffset;
+            let scrollPos = window.pageYOffset;
 
             // Calculate the number of slides that have been scrolled past
-            var slideNum = Math.floor(scrollPos / window.innerHeight);
+            let slideNum = Math.floor(scrollPos / (window.innerHeight / 2));
 
             // Make sure the slide number is within bounds
             if (slideNum >= 0 && slideNum < slides.length) {
                 // Hide the current slide
-                slides[currentSlide].style.transform = "translateX(-100%)";
-
+                slides[currentSlide].style.opacity = 0;
+                slides[currentSlide].style.zIndex = 1;
+                // slides[currentSlide].style.transform = "translateY(-100px)";
+                
                 // Show the new slide
                 currentSlide = slideNum;
-                slides[currentSlide].style.transform = "translateX(0%)";
+                slides[currentSlide].style.opacity = 1;
+                slides[currentSlide].style.zIndex = 11;
+                // slides[currentSlide].style.transform = "translateY(0px)";
             }
         });
     </script>
