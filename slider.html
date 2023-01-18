@@ -35,7 +35,12 @@
     <style>
         :root {
             --theme-bg: rgba(7,21,35,1);
+            --theme-text: rgba(238,243,253,1);
             --card-bg: rgba(9,23,42,1);
+            --theme-main: rgba(14,207,133,1);
+            --theme-accent: rgba(219,8,202,1);
+
+            --banner-bg: rgba(136,113,13,1);
         }
         body {
             height: calc((100vh) * 5.5);
@@ -66,39 +71,31 @@
 
         /* Style for the background colors */
         .bg1 {
-            background-color: #F44336;
-            /* Red */
             z-index: 10;
             background-color: var(--theme-bg);
         }
 
         .bg2 {
-            background-color: #4CAF50;
-            /* Green */
             z-index: 9;
             background-color: var(--theme-bg);
         }
 
         .bg3 {
-            background-color: #3F51B5;
-            /* Blue */
             z-index: 8;
             background-color: var(--theme-bg);
         }
         
-        .bg3 span.artwork {
+        .bg4 span.artwork {
             background: url(slide-1.png);
             background-size: contain;
             background-repeat: no-repeat;
             background-position: right;
             width: 80vw;
-            aspect-ratio: 1;
-            
+            height: 85vh;
+            min-width: 286px;
         }
 
         .bg4 {
-            background-color: #FFEB3B;
-            /* Yellow */
             z-index: 7;
         }
 
@@ -169,14 +166,22 @@
         div.page.footer {
             position: relative;
             width: 100%;
-            flex: .5;
+            flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             margin: 0 auto;
             max-width: 1220px;
+        }
 
+        div.page.header > * {
+            margin: 0 auto;
+            padding: 20px 40px;
+        }
+
+        h1 {
+            padding: 40px 40px 0 !important;
         }
         
         div.banner {
@@ -186,20 +191,15 @@
             flex-direction: row;
             align-items: center;
             justify-content: space-around;
-            background-color: rgba(136,113,13,1);
-            color: rgb(255, 255, 255);
-
+            background-color: var(--banner-bg);
+            color: var(--theme-text);
         }
-
         div.banner h4 {
             font-weight: 100;
             margin: 0;
-            padding: .75em 0;
+            padding: .75em 1.5em;
         }
 
-        div.page.main {
-            flex: 1;
-        }
         div.page.footer {
             justify-content: flex-end;
         }
@@ -213,22 +213,29 @@
         }
 
         div.page.main section div.intro {
-            margin: 3.75em 7.5em;
-            text-align: center;
+            margin: 2.5em 5em;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
         }
 
+        div.page.main section div.intro h2 {
+            margin: 0;
+            padding: 0;
+        }
         
         div.page.main section div.hero {
             position: relative;
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
-            align-items: space-around;
-            transform-style: preserve-3d;
+            justify-content: space-around;
+            align-items: center;
             
         }
 
         div.page.main section div.hero div.league.container {
+            transform-style: preserve-3d;
             perspective: 10px;
             position: relative;
             display: flex;
@@ -240,11 +247,11 @@
             margin: 0;
         }
 
-        div.page.main section div.hero div.league.container:nth-child(1) {
-            transform: translate3d(20%, 7.5%, -5px);
+        div.page.main section div.hero div.league.container div#card-0 {
+            transform: translate3d(33%, 25px, .75px) scale(.9);
         }
-        div.page.main section div.hero div.league.container:nth-child(2) {
-            transform: translate3d(-20%, -7.5%, 10px);
+        div.page.main section div.hero div.league.container div#card-1 {
+            transform: translate3d(-33%, -25px, .75px) scale(.9);
         }
 
         div.page.main section div.hero div.league.container div.card {
@@ -277,7 +284,7 @@
             color: rgb(219, 8, 202);
         }
 
-        div.page.main section div.hero div.league.container span.image.wrapper {
+        div.page.main section div.hero div.league.container div.card span.image.wrapper {
             position: relative;
             display: flex;
             flex-direction: column;
@@ -289,19 +296,24 @@
 
         }
 
-        div.page.main section div.hero div.league.container span.image.wrapper img.prize {
+        div.page.main section div.hero div.league.container div.card span.image.wrapper img.prize {
             position: relative;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            width: 256px;
-            height: 256px;
+            width: 192px;
+            height: 192px;
             flex: 1;
             margin: 0;
             padding: 0;
             border-radius: .75em;
 
+        }
+
+        div.league.card > p {
+            margin: 0 0 .75em;
+            color: var(--theme-text);
         }
 
 
@@ -313,7 +325,6 @@
 
 <body>
     <div class="slide bg1">
-        <!-- <h2>Slide 1</h2> -->
         <div class="page content">
             <div class="page header">
                 <h1>
@@ -321,37 +332,38 @@
                 </h1>
                 <span class="subheader">
                     <p>
-                        <!-- Win a Ghost Buddy NFT! -->
                         Win a Ghost Buddy NFT! Up to 3 winners!
                     </p>
                 </span>
             </div>
             <div class="banner">
                 <h4>
-                    Win your own Ghost Buddy NFT while you get exposure as an artist! Contest ends on 31st of Januari 2023!
+                    A Contest for the community, by the community! Contest ends on 31st of Januari 2023! 3 Ghost Buddy NFT's to be won! Don't miss out!
                 </h4>
             </div>
             <div class="page main">
                 <section>
                     <div class="intro">
-<!-- 
-                        <h2>
-                            2 Leagues, 3 Prizes!
-                        </h2> -->
-                        <p>
-                            The Ghost Buddy Roadtrip Contest is a community driven contest where the community decides the winner. 
-                            The contest is split into two leagues, the Community League and the Ghost League. 
-                            The Community League is open to all members of the Ghost Buddy community who hold one or more Buddies. 
-                            The Ghost League is open to everybody who do not has a Ghost Buddy NFT yet. 
-                            The winner of each league will receive a Ghost Buddy NFT.
-                            The 3th Ghost Buddy NFT will be awarded to community's free pick (All submissions will be elidgable for this prize)
+                        <div>
 
-                        </p>
+                            <h2>
+                                Sum title
+                            </h2>
+                            <p>
+                                The Ghost Buddy Roadtrip is a 100% community driven contest.
+                                So many talented people where vibing in the community and we wanted to give them a chance to show off their skills.
+                                Make a cool artwork with your Ghost Budd and a verhicle and submit it to the contest.
+                                The contest is split into two leagues, the Community League and the Ghost League.
+                                Both leagues have a Ghost Buddy NFT as first prize! 
+                                Another Ghost Buddy will be given to the communities favorite!
+                                
+                                
+                            </p>
+                        </div>
                     </div>
                     <div class="hero">
                         <div class="league container" id="wrapper-0">
-
-                            <div class="league card" id="card-1">
+                            <div class="league card" id="card-0">
                                 <h4>
                                     The Community League <span>**holders only**</span>
                                 </h4>
@@ -365,7 +377,9 @@
                                         class="prize">
                                 </span>
                                 <span>
-
+                                    <p>
+                                        Provided by: Name
+                                    </p>
                                 </span>
                             </div>
                         </div>
@@ -383,8 +397,10 @@
                                         src="boo/Ghost-Buddy-2572.png" 
                                         class="prize">
                                 </span>
-                                <span>
-                                    
+                                <span class="footer">
+                                    <p>
+                                        Provided by: <a href="https://twitter.com/_sh1Tt">Maurice💫🐘🤌</a>
+                                    </p>
                                 </span>
                             </div>
 
@@ -409,7 +425,23 @@
         </div>
     </div>
     <div class="slide bg2">
-        <!-- <h2>Slide 2</h2> -->
+        <div class="page content">
+            <div class="page header">
+                <h2>
+                    About the Ghost Buddy Roadtrip Contest
+                </h2>
+                <p>
+                    The contest is split into two leagues. 
+                    The Ghost League is for non-holders of Ghost Buddy NFTs. 
+                    The Community League is for holders of Ghost Buddy NFTs.
+                    
+                </p>
+            </div>
+            <div class="page main">
+            </div>
+        </div>
+    </div>
+    <div class="slide bg3">
         <div class="page content">
             <div class="page header">
                 <h2>Contest Rules</h2>
@@ -470,7 +502,7 @@
             </div>
         </div>
     </div>
-    <div class="slide bg3">
+    <div class="slide bg4">
         <div class="page content">
             <span class="artwork">
                 
@@ -479,9 +511,6 @@
                 Artist: <a href="https://twitter.com/ghostbuddyNFT" target="_blank">Ghost Buddy</a>
             </span>
         </div>
-    </div>
-    <div class="slide bg4">
-        <h2>Slide 4</h2>
     </div>
     <div class="slide bg5">
         <h2>Slide 5</h2>
