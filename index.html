@@ -80,6 +80,29 @@
                 margin: 0 auto;
                 width: 100%;
             }
+            #settings {
+                position: fixed;
+                bottom: 2vh;
+                right: 2.5vw;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            #settings .btn {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-wrap: wrap;
+                margin: 0 auto;
+                width: max-content;
+                background-color: rgba(24, 85, 190, 0.95);
+                padding: 1.75rem 3.5rem;
+                border-radius: .375em;
+                text-decoration: none;
+                color: #ffffff;
+                font-size: 24px;
+                font-weight: bold;
+            }
             .clock {
                 font-size: 48px;
                 font-weight: bold;
@@ -100,12 +123,13 @@
         </header>
         <main>
             <div id="clock-container"></div>
+            <div id="countdown" class="glass-panel"></div>
+            <div id="settings">
+                <a href="team.html" class="btn">
+                    Settings
+                </a>
+            </div>
         </main>
-        <aside>
-            <a href="team.html">
-                Settings
-            </a>
-        </aside>
         <footer>
             <p>
                 This website is written by chatGPT, adjusted by Maurice Stolk and refactored by GitHub Copilot - Januari 2023.
